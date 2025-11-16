@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard • SDSU Thrive</title>
+  <link rel="stylesheet" href="/static/cute.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+</head>
+<body class="bg">
+  <div class="card">
+    <h1>🧘 Hi, {{ full_name }}!</h1>
+    <p class="subtitle">Let’s make today a little lighter.</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('quizTab', this)">🧠 Stress Check Quiz</button>
+      <button class="tab" onclick="showTab('studyTab', this)">📚 Study Smarter</button>
+    </div>
+
+    <!-- QUIZ TAB -->
+    <div id="quizTab" class="panel">
+      <div class="row">
+        <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_m6j5igxb.json"
+  background="transparent" speed="1"
+  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        <div>
+          <h3>Gentle check-in</h3>
+          <p>Short, friendly questions to gauge how you’re doing — no labels, just support.</p>
+          {% if quiz %}
+            <div class="pill {{ quiz.color }}">Last result: {{ quiz.level }} (score {{ quiz.score }})</div>
+          {% endif %}
+          <a class="btn" href="{% url 'quiz' %}">Take Quiz</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDY TAB -->
+    <div id="studyTab" class="panel hidden">
+      <div class="row">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json" background="transparent" speed="1" style="width: 220px; height: 220px;" loop autoplay></lottie-player>
+        <div>
+          <h3>Study with less stress</h3>
+          <p>Import your classes or add them manually. Click a subject to see mentors & links.</p>
+
+          <form method="post" action="{% url 'study_add' %}" class="inline-form">
+            {% csrf_token %}
+            <input name="token" placeholder="Canvas token (demo)" />
+            <button type="submit">Import</button>
+          </form>
+
+          <form method="post" action="{% url 'study_add' %}" class="inline-form">
+            {% csrf_token %}
+            <input name="manual_subject" placeholder="Add subject manually" />
+            <button type="submit">Add</button>
+          </form>
+
+          {% if subjects %}
+            <ul class="subject-list">
+              {% for s in subjects %}
+                <li><a href="{% url 'study_subject' subject=s|slugify %}">{{ s }}</a></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="muted">No subjects yet — try importing or adding one ✨</p>
+          {% endif %}
+          <a class="btn ghost" href="{% url 'study_home' %}">Open Study Hub</a>
+        </div>
+      </div>
+    </div>
+
+    <a class="logout" href="{% url 'logout' %}">Log out</a>
+  </div>
+
+  <script>
+    function showTab(id, btn) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

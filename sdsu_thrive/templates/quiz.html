@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stress Check Quiz • SDSU Thrive</title>
+  <link rel="stylesheet" href="/static/cute.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body class="bg">
+  <div class="card">
+    <h1>🧠 Gentle Stress Check</h1>
+    <p class="subtitle">Answer a few quick questions — no pressure.</p>
+<lottie-player
+  src="https://assets2.lottiefiles.com/private_files/lf30_m6j5igxb.json"
+  background="transparent"
+  speed="1"
+  style="width: 280px; height: 280px; margin: 0 auto;"
+  loop
+  autoplay
+></lottie-player>
+
+
+    <form method="post" style="margin-top:12px;">
+      {% csrf_token %}
+      {% for q in questions %}
+        <div class="q">
+          <h4>{{ forloop.counter }}. {{ q.text }}</h4>
+          {% for label, val in q.choices %}
+            <label class="choice">
+              <input type="radio" name="{{ q.id }}" value="{{ val }}" required /> {{ label }}
+            </label>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <button type="submit">See Insights ✨</button>
+    </form>
+
+    <a class="ghost" href="{% url 'dashboard' %}" style="margin-top:10px; display:inline-block;">Back to Dashboard</a>
+  </div>
+</body>
+</html>

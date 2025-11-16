@@ -1,0 +1,61 @@
+<!-- templates/front_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SDSU Thrive • Student Success Guide</title>
+  <link rel="stylesheet" href="/static/cute.css" />
+</head>
+<body class="bg">
+  <div class="card">
+    <h1>🐾 SDSU Thrive</h1>
+    <p class="subtitle">Student Success Guide</p>
+
+    {% if messages %}
+      <div class="messages">
+        {% for m in messages %}
+          <div class="msg {{ m.tags }}">{{ m }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="tabs">
+      <button class="tab" onclick="show('login')">Log In</button>
+      <button class="tab" onclick="show('signup')">Sign Up</button>
+    </div>
+
+    <div id="login" class="panel">
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label>Username</label>
+        <input name="username" placeholder="aztec123" required />
+        <label>Password</label>
+        <input name="password" type="password" placeholder="••••••••" required />
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+
+    <div id="signup" class="panel hidden">
+      <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <label>Full name (optional)</label>
+        <input name="full_name" placeholder="Aztec Student" />
+        <label>Username</label>
+        <input name="username" placeholder="aztec123" required />
+        <label>Password</label>
+        <input name="password" type="password" placeholder="make it secret" required />
+        <button type="submit">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function show(which) {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('signup').classList.add('hidden');
+      document.getElementById(which).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

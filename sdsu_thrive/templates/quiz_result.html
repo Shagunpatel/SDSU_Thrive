@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Insights • SDSU Thrive</title>
+  <link rel="stylesheet" href="/static/cute.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body class="bg">
+  <div class="card">
+    <h1>🌈 Your Insights</h1>
+    <p class="subtitle">Result: <span class="pill {{ quiz.color }}">{{ quiz.level }}</span> (score {{ quiz.score }})</p>
+
+    <div class="row">
+      <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_lk80fpsm.json" background="transparent" speed="1" style="width: 220px; height: 220px;" loop autoplay></lottie-player>
+      <div>
+        <h3>Gentle suggestions</h3>
+        <ul class="tips">
+          {% for t in tips %}
+            <li>💡 {{ t }}</li>
+          {% endfor %}
+        </ul>
+
+        <div class="note">
+          Looking for SDSU wellness programs? You can add links you scrape later — e.g.,
+          <em>Counseling & Psychological Services</em>, <em>Well-Being & Health Promotion</em>, <em>Peer Mentors</em>.
+        </div>
+
+        <a class="btn" href="{% url 'dashboard' %}">Back to Dashboard</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
