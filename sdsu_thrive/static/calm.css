@@ -1,11 +1,8 @@
+/* Body background */
 body.bg {
-  background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWs3dHFwNnhwZ2k5bWthdzVqZDNxeWp1YW9uZHMwczVjNml2Z3dqeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DVhcQOgU74AhpV0atE/giphy.gif');
-  background-size: 140%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url("https://i.redd.it/93yotva18hec1.gif"); /* plain white background */
   font-family: "Inter", "Noto Sans", sans-serif;
-  color: #333;
+  color: #333; /* dark text for contrast */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -14,11 +11,9 @@ body.bg {
   transition: background 0.5s ease;
 }
 
-
-
+/* Card styling */
 .card {
-  background: #ffffffd8;
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 20px;
   padding: 36px;
   width: 100%;
@@ -28,83 +23,131 @@ body.bg {
   animation: fadeIn 0.8s ease;
 }
 
-
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 6px;
-  color: #305f72;
+/* Headings */
+h1, h3 {
+  opacity: 1;
+  color: #b22222; /* dark red for headings */
 }
+/* Subtitle */
 .subtitle {
-  color: #607d8b;
-  font-size: 1rem;
-  margin-bottom: 20px;
+  color: #a52a2a;
+  opacity: 1;
 }
 
-
+/* Question boxes */
 .q {
-  background: #f8fbfb;
+  background: #ffffff;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
   text-align: left;
   transition: background 0.3s;
+  opacity: 1;
 }
-
 
 .q:hover {
-  background: #f1f9f8;
+  background: #f0f0f0; /* gray hover */
+  opacity: 1;
 }
 
-
+/* Choices */
 .choice {
   display: block;
   margin: 6px 0;
-  color: #444;
+  color: #333;
   cursor: pointer;
+  opacity: 1;
 }
-
 
 input[type="radio"] {
-  accent-color: #5dbb9e;
+  accent-color: #b22222; /* red radios */
   margin-right: 6px;
+  opacity: 1;
 }
 
-
-button {
-  background: #5dbb9e;
-  color: white;
+/* Buttons */
+button, .btn {
+  background: #b22222; /* main red */
+  color: #ffffff;
   border: none;
   border-radius: 10px;
   padding: 12px 20px;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s, transform 0.1s;
+  opacity: 1;
 }
 
-
-button:hover {
-  background: #4fa88e;
+button:hover, .btn:hover {
+  background: #555555; /* gray hover */
+  opacity: 1;
 }
 
-
-button:active {
+button:active, .btn:active {
   transform: scale(0.98);
+  opacity: 1;
 }
 
-
-a.ghost {
-  color: #5dbb9e;
-  text-decoration: none;
-  font-size: 0.95rem;
+/* Ghost buttons */
+.btn.ghost {
+  background: transparent;
+  color: #b22222;
+  border: 1px solid #b22222;
+  opacity: 1;
 }
 
-
-a.ghost:hover {
-  text-decoration: underline;
+.btn.ghost:hover {
+  background: #dcdcdc; /* gray hover */
+  color: #b22222;
+  opacity: 1;
 }
 
+/* Panels */
+.panel {
+  background: #f7f7f7;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: left;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  opacity: 1;
+}
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Tips list */
+.tips li {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  display: flex;
+  gap: 8px;
+  align-items: start;
+  transition: transform 0.06s ease, background 0.3s ease;
+  opacity: 1;
+}
+
+.tips li:hover {
+  background: #f0f0f0; /* gray hover */
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+/* Note box */
+.note {
+  background: #ffffff;
+  border: 1px dashed #b22222;
+  color: #b22222;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 16px 0 24px 0;
+  opacity: 1;
+}
+
+/* Pills (optional coloring) */
+.pill.low, .pill.moderate, .pill.high {
+  background: #ffffff;
+  border: 1px solid #b22222;
+  color: #b22222;
+  opacity: 1;
 }

@@ -4,28 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Your Insights • SDSU Thrive</title>
-  <link rel="stylesheet" href="/static/cute.css" />
+  <link rel="stylesheet" href="/static/calm.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body class="bg">
   <div class="card">
     <h1>Your Insights</h1>
-    <p class="subtitle">Result: <span class="pill {{ quiz.color }}">{{ quiz.level }}</span> (score {{ quiz.score }})</p>
+    <p class="subtitle">
+      Result:
+      <span class="pill {{ quiz.color }}">{{ quiz.level }}</span>
+      <span class="score">(score {{ quiz.score }})</span>
+    </p>
+
+    <lottie-player
+      src="https://assets2.lottiefiles.com/packages/lf20_0fhlytwe.json"
+      background="transparent"
+      speed="0.6"
+      style="width:220px;height:220px;margin:6px auto 2px auto;"
+      loop
+      autoplay
+      aria-label="gentle animated illustration"
+    ></lottie-player>
 
     <div class="row">
-      <div>
+      <div class="panel">
         <h3>Gentle suggestions</h3>
         <ul class="tips">
           {% for t in tips %}
-            <li>💡 {{ t }}</li>
+            <li><span class="tip-bullet" aria-hidden="true">💡</span>{{ t }}</li>
           {% endfor %}
         </ul>
 
         <div class="note">
-          <a class="btn" href="{% url 'programs' %}">Browse All Programs</a>
+          Looking for guided support? Explore programs that match your pace.
         </div>
 
-        <a class="btn" href="{% url 'dashboard' %}">Back to Dashboard</a>
+        <div class="actions">
+          <a class="btn" href="{% url 'programs' %}">Browse Programs</a>
+          <a class="btn ghost" href="{% url 'dashboard' %}">Back to Dashboard</a>
+        </div>
       </div>
     </div>
   </div>
