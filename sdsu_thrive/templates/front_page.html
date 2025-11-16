@@ -1,27 +1,27 @@
-<!-- templates/front_page.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SDSU Thrive • Student Success Guide</title>
-  <link rel="stylesheet" href="/static/cute.css" />
+  <link rel="stylesheet" href="{% static 'cute.css' %}" />
 </head>
-<body class="bg">
+<body class="bg" style="background: url('https://storage.ko-fi.com/cdn/useruploads/display/e62ec1f1-eb2a-48e0-be8a-fcf3bf015a4c_forestfamilybyshaperka.gif') no-repeat center center; background-size: cover;">
+
   <div class="card">
-    <h1>🐾 SDSU Thrive</h1>
-    <p class="subtitle">Student Success Guide</p>
+    <h1><span class="sdsu">SDSU</span> Thrive</h1>
 
     {% if messages %}
       <div class="messages">
         {% for m in messages %}
-          <div class="msg {{ m.tags }}">{{ m }}</div>
+          <div class="msg {% if m.tags %}{{ m.tags }}{% endif %}">{{ m }}</div>
         {% endfor %}
       </div>
     {% endif %}
 
     <div class="tabs">
-      <button class="tab" onclick="show('login')">Log In</button>
+      <button class="tab active" onclick="show('login')">Log In</button>
       <button class="tab" onclick="show('signup')">Sign Up</button>
     </div>
 
@@ -48,13 +48,18 @@
         <button type="submit">Create Account</button>
       </form>
     </div>
+
   </div>
 
   <script>
     function show(which) {
-      document.getElementById('login').classList.add('hidden');
-      document.getElementById('signup').classList.add('hidden');
+      document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
       document.getElementById(which).classList.remove('hidden');
+
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      if(which === 'login') { tabs[0].classList.add('active'); }
+      else { tabs[1].classList.add('active'); }
     }
   </script>
 </body>

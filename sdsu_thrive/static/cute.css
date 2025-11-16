@@ -1,7 +1,6 @@
-/* static/cute.css */
 :root {
   --bg: #fff6fb;
-  --card: #ffffff;
+  --card: rgba(255,255,255,0.6); /* semi-transparent panel */
   --accent: #e11d48; /* rosy red */
   --text: #222;
   --sub: #555;
@@ -9,54 +8,115 @@
   --radius: 20px;
 }
 
-* { box-sizing: border-box; font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Color Emoji', 'Apple Color Emoji', sans-serif; }
+* {
+  box-sizing: border-box;
+  font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
 
 body.bg {
   margin: 0;
-  min-height: 100svh;
-  background: radial-gradient(1000px 600px at 10% 0%, #ffe3ef, transparent),
-              radial-gradient(900px 500px at 90% 100%, #ffeaf6, transparent),
-              var(--bg);
+  min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 40px;
+  background: url('/static/images/bunny-background.jpg') no-repeat center center;
+  background-size: cover;
 }
 
 .card {
   width: 100%;
-  max-width: 560px;
+  max-width: 600px;
   background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  padding: 48px;
   text-align: center;
   animation: pop 0.5s ease-out;
 }
 
-@keyframes pop { from { transform: scale(0.98); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.card:not(.login-card) {
+  max-width: 800px; 
+  padding: 48px;    
+}
 
-h1 { margin: 0 0 6px; font-size: 34px; }
-.subtitle { margin: 0 0 16px; color: var(--sub); }
 
-.tabs { display: flex; gap: 8px; justify-content: center; margin: 10px 0 18px; }
+.sdsu {
+  color: #e11d48;
+  font-weight: 800;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  color: var(--sub);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
 .tab {
   border: 0;
-  padding: 10px 14px;
-  background: #ffe5ed;
+  padding: 14px 18px;
   border-radius: 999px;
+  background: #FFFFFF;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
-.panel.hidden { display: none; }
+
+.tab:hover {
+  background: #E8E3D1;
+  box-shadow: var(--shadow);
+}
+
+.tab.active {
+  background: #E8E3D1;
+  box-shadow: var(--shadow);
+}
+
+.panel.hidden {
+  display: none;
+}
 
 form {
-  display: grid; gap: 10px;
-  text-align: left; margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
 }
 
-label { font-size: 14px; color: var(--sub); }
+label {
+  font-size: 0.95rem;
+  color: var(--sub);
+}
+
 input {
-  width: 100%; padding: 12px 14px; border-radius: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
   border: 1px solid #eee;
+  font-size: 1rem;
 }
 
 button[type="submit"] {
@@ -64,138 +124,35 @@ button[type="submit"] {
   background: var(--accent);
   color: white;
   border: 0;
-  border-radius: 12px;
-  padding: 12px 14px;
+  border-radius: 16px;
+  padding: 14px 16px;
   cursor: pointer;
+  font-size: 1rem;
   box-shadow: var(--shadow);
+  transition: all 0.2s ease;
 }
 
-.messages { text-align: left; margin-bottom: 8px; }
-.msg { padding: 10px 12px; border-radius: 10px; margin: 6px 0; }
-.msg.error { background: #ffe5e9; color: #7a0a22; }
-.msg.success { background: #e6ffef; color: #075e2b; }
-
-.grid {
-  margin-top: 12px;
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(3, 1fr);
+button[type="submit"]:hover {
+  background: #d10f3c;
 }
-.tile {
-  background: #fff7fb;
-  border: 1px solid #ffe2f0;
-  border-radius: 16px;
-  padding: 12px;
+
+.messages {
   text-align: left;
+  margin-bottom: 16px;
 }
 
-.logout {
-  display: inline-block;
-  margin-top: 18px;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-/* Tabs active state */
-.tab.active { background: #ffd5e3; box-shadow: var(--shadow); }
-
-/* Pills for results */
-.pill { display:inline-block; padding:6px 10px; border-radius:999px; font-size:13px; }
-.pill.good { background:#e9ffe9; color:#055b27; }
-.pill.ok   { background:#fff9e5; color:#6a5405; }
-.pill.warn { background:#ffe5e8; color:#7a0a22; }
-
-/* Rows & forms */
-.row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: center; }
-.inline-form { display:flex; gap:8px; margin:8px 0; }
-.inline-form input { flex:1; }
-
-/* Lists */
-.subject-list, .list, .tips { padding-left: 0; list-style: none; }
-.subject-list li, .list li, .tips li {
-  background: #fff7fb; border:1px solid #ffe2f0; border-radius:12px; padding:10px 12px; margin:8px 0;
-}
-.subject-list a { text-decoration:none; color: var(--text); }
-
-/* Buttons */
-.btn, .ghost { display:inline-block; padding:10px 14px; border-radius:12px; text-decoration:none; }
-.btn { background: var(--accent); color:white; box-shadow: var(--shadow); }
-.btn.ghost, .ghost { background:#ffe5ed; color:#222; }
-
-/* Muted */
-.muted { color: var(--sub); }
-
-/* Question group */
-.q { margin: 12px 0; }
-.choice { display:block; margin:6px 0; }
-
-.note {
-  background:#f8f8ff; border:1px dashed #ddd; padding:10px 12px; border-radius:12px; margin-top:8px;
-}
-
-/* --- Relaxed Layout (Bigger Card & Elements) --- */
-
-body.bg {
-  padding: 40px; /* more space around */
-}
-
-.card {
-  max-width: 900px;   /* was 560px */
-  padding: 48px;      /* more padding inside */
-  border-radius: 28px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  font-size: 1.05rem; /* slightly larger text */
-}
-
-h1 {
-  font-size: 2.2rem;  /* bigger headline */
-}
-
-.subtitle {
-  font-size: 1.1rem;
-}
-
-form input,
-form button,
-button,
-.tab {
-  font-size: 1rem;
-  padding: 14px 16px;
-}
-
-.tab {
-  background: #ffe5ed;
+.msg {
+  padding: 12px 14px;
   border-radius: 16px;
+  margin: 8px 0;
 }
 
-.row {
-  grid-template-columns: 280px 1fr; /* bigger image space */
-  gap: 30px;
+.msg.error {
+  background: #E8E3D1;
+  color: #7a0a22;
 }
 
-.q h4 {
-  font-size: 1.05rem;
-}
-
-.choice {
-  font-size: 1rem;
-  padding: 6px 0;
-}
-
-.btn, .ghost {
-  padding: 14px 20px;
-  font-size: 1rem;
-  border-radius: 14px;
-}
-
-.subject-list li, .list li, .tips li {
-  font-size: 1rem;
-  padding: 14px 16px;
-  border-radius: 16px;
-}
-
-.logout {
-  display: block;
-  margin-top: 30px;
-  font-size: 1rem;
+.msg.success {
+  background: #E8E3D1;
+  color: #075e2b;
 }
