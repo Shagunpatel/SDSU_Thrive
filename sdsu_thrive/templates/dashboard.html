@@ -10,25 +10,24 @@
 <body class="bg" style="background: url('https://storage.ko-fi.com/cdn/useruploads/display/e62ec1f1-eb2a-48e0-be8a-fcf3bf015a4c_forestfamilybyshaperka.gif') no-repeat center center; background-size: cover;">
 
   <div class="card">
-    <h1>🧘 Hi, {{ full_name }}!</h1>
-    <p class="subtitle">Let’s make today a little lighter.</p>
+    <h1>Hi, {{ full_name }}!</h1>
+    <p class="subtitle">Let’s check in and see how you are doing!</p>
 
     <div class="tabs">
-      <button class="tab active" onclick="showTab('quizTab', this)">🧠 Stress Check Quiz</button>
-      <button class="tab" onclick="showTab('studyTab', this)">📚 Study Smarter</button>
+      <button class="tab active" onclick="showTab('quizTab', this)">Stress Check Quiz</button>
+      <button class="tab" onclick="showTab('studyTab', this)">Need Help Studying?</button>
     </div>
 
     <!-- QUIZ TAB -->
     <div id="quizTab" class="panel">
       <div class="row">
-        <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_m6j5igxb.json"
-  background="transparent" speed="1"
-  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-uIlVjwrkNKn5p94cttudk_qsWYdg5aGJA&s">
         <div>
           <h3>Gentle check-in</h3>
-          <p>Short, friendly questions to gauge how you’re doing — no labels, just support.</p>
           {% if quiz %}
-            <div class="pill {{ quiz.color }}">Last result: {{ quiz.level }} (score {{ quiz.score }})</div>
+            <div class="pill {{ quiz.color }}">
+              Last result: {{ quiz.level }} (score {{ quiz.score }})
+            </div>
           {% endif %}
           <a class="btn" href="{% url 'quiz' %}">Take Quiz</a>
         </div>
@@ -38,7 +37,14 @@
     <!-- STUDY TAB -->
     <div id="studyTab" class="panel hidden">
       <div class="row">
-        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json" background="transparent" speed="1" style="width: 220px; height: 220px;" loop autoplay></lottie-player>
+        <lottie-player 
+          src="https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json" 
+          background="transparent" 
+          speed="1" 
+          style="width: 220px; height: 220px;" 
+          loop 
+          autoplay>
+        </lottie-player>
         <div>
           <h3>Study with less stress</h3>
           <p>Import your classes or add them manually. Click a subject to see mentors & links.</p>
@@ -64,6 +70,7 @@
           {% else %}
             <p class="muted">No subjects yet — try importing or adding one ✨</p>
           {% endif %}
+
           <a class="btn ghost" href="{% url 'study_home' %}">Open Study Hub</a>
         </div>
       </div>
@@ -80,5 +87,6 @@
       btn.classList.add('active');
     }
   </script>
+
 </body>
 </html>

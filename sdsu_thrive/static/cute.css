@@ -1,6 +1,7 @@
 :root {
   --bg: #fff6fb;
   --card: rgba(255,255,255,0.6); /* semi-transparent panel */
+  --dashboard-card: rgba(255,255,255,0.8); /* more opaque for dashboard */
   --accent: #e11d48; /* rosy red */
   --text: #222;
   --sub: #555;
@@ -34,12 +35,14 @@ body.bg {
   animation: pop 0.5s ease-out;
 }
 
+/* Dashboard cards wider and more opaque */
 .card:not(.login-card) {
-  max-width: 800px; 
-  padding: 48px;    
+  max-width: 800px;
+  background: var(--dashboard-card);
+  padding: 48px;
 }
 
-
+/* SDSU text */
 .sdsu {
   color: #e11d48;
   font-weight: 800;
@@ -156,3 +159,42 @@ button[type="submit"]:hover {
   background: #E8E3D1;
   color: #075e2b;
 }
+
+
+.quiz-text {
+  text-align: center;
+}
+
+.quiz-text .pill,
+.quiz-text .btn {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+#quizTab .btn {
+  font-size: 1.4rem;
+  padding: 16px 24px;
+  border-radius: 20px;
+}
+
+/* Make all buttons/links cream */
+.btn, .btn.ghost, .ghost {
+  background: #FFFFFF;  /* cream */
+  color: #222;          /* dark text for contrast */
+  border-radius: 12px;  /* keep rounded edges */
+  padding: 10px 16px;   /* standard padding */
+  text-decoration: none; /* remove underline */
+  display: inline-block;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.btn:hover, .btn.ghost:hover, .ghost:hover {
+  background: #E8E3D1;  /* slightly darker cream on hover */
+}
+
+.faded-image {
+  opacity: 0.6;
+  transition: opacity 0.3 ease;
+}
+
