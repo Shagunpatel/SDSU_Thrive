@@ -20,9 +20,15 @@ body.bg {
   display: grid;
   place-items: center;
   padding: 40px;
-  background: url('/static/images/bunny-background.jpg') no-repeat center center;
-  background-size: cover;
+
+  background: url('/static/images/bunny-background.jpg') 
+              no-repeat 
+              center center;
+  background-size: contain;
+
 }
+
+
 
 .card {
   width: 100%;
@@ -136,7 +142,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #d10f3c;
+  background: #E8E3d1;
 }
 
 .messages {
@@ -159,6 +165,7 @@ button[type="submit"]:hover {
   background: #E8E3D1;
   color: #075e2b;
 }
+
 
 
 .quiz-text {
@@ -196,5 +203,135 @@ button[type="submit"]:hover {
 .faded-image {
   opacity: 0.6;
   transition: opacity 0.3 ease;
+}
+
+/* Programs List */
+
+
+/* Pretty pagination row */
+.pagination {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(20%);
+}
+
+/* Neutral pill variant for counts/page number */
+.pill.neutral {
+  background: #f4f4f7;
+  color: #444;
+  border: 1px solid #eee;
+}
+
+/* Page indicator pill a bit roomier */
+.page-indicator {
+  padding: .5rem .8rem;
+}
+
+/* List row link fills the tile and separates arrow */
+.link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Slight hover lift on list items */
+.list li:hover {
+  transform: translateY(-1px);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+/* Header layout */
+.programs-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+/* Make list tiles pretty; remove default bullets/blue links */
+.list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 16px;
+}
+.pretty-links a {
+  text-decoration: none;
+  color: inherit;
+}
+.link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff7fb;
+  border: 1px solid #ffe2f0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  transition: transform 120ms ease, box-shadow 120ms ease, ;
+}
+.link-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  background: #fff1f8;
+}
+.link-row .arrow { opacity: .6; }
+
+/* Pagination as cute buttons (no purple links) */
+.pagination {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.pagination a { text-decoration: none; color: inherit; }
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  display: inline-block;
+}
+.btn:hover { filter: brightness(1.03); transform: translateY(-1px); }
+.btn.disabled {
+  background: #f1f1f4; color: #777; box-shadow: none;
+  pointer-events: none;
+}
+.pill.neutral {
+  background: #f4f4f7; color: #444; border: 1px solid #eee;
+}
+.page-indicator { padding: .5rem .8rem; border-radius: 999px; }
+
+/* Back button */
+.btn.ghost {
+  background: #ffeef4;
+  color: #333;
+}
+
+/* Optional: widen the card for this page */
+.card { 
+  max-width: 1000px; 
+}
+.logout-btn {
+  font-size: 1.4rem;
+  padding: 16px 24px;
+  border-radius: 20px;
 }
 

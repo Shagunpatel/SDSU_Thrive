@@ -6,7 +6,7 @@
   <title>Study Hub • SDSU Thrive</title>
   <link rel="stylesheet" href="/static/cute.css" />
 </head>
-<body class="bg">
+<body class="bg" style="background-image: url('https://img.itch.zone/aW1hZ2UvNTUzNjkxLzI4OTg2MzguZ2lm/original/W3%2FPtm.gif')">
   <div class="card">
     <h1>📚 Study Hub</h1>
     <p class="subtitle">Import or add subjects, then click for mentors & resources.</p>
@@ -38,7 +38,7 @@
         {% endfor %}
       </ul>
     {% else %}
-      <p class="muted">No subjects yet — try importing or adding one ✨</p>
+      <p class="muted">No subjects yet, try importing or adding one!</p>
     {% endif %}
 
     <a class="ghost" href="{% url 'dashboard' %}">Back to Dashboard</a>
