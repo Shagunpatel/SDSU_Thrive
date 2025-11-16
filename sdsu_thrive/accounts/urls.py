@@ -15,4 +15,5 @@ urlpatterns = [
     path('study/', views.study_home, name='study_home'),
     path('study/add/', views.study_add_subject, name='study_add'),
     path('study/<slug:subject>/', views.study_subject, name='study_subject'),
+    path("programs/", views.programs_list, name="programs"),
 ]

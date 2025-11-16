@@ -1,12 +1,20 @@
 # accounts/views.py
+from __future__ import annotations
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils.text import slugify
 import requests
 from requests.utils import parse_header_links
 from requests.exceptions import HTTPError, RequestException
+from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.cache import cache
+from django.http import HttpRequest, HttpResponse
+from .utils.sdsu_scraper import fetch_html, parse_services, DEFAULT_URL
 
 CANVAS_BASE_URL = "https://sdsu.instructure.com" 
+CACHE_KEY = "sdsu_services_list_v1"
+CACHE_TTL_SECONDS = 60 * 60 * 12  # 12 hours
 
 def _parse_next_link(resp):
     link_header = resp.headers.get("Link")
@@ -348,3 +356,46 @@ def study_subject(request, subject):
         "links": [("SDSU Library", "https://library.sdsu.edu/")],
     })
     return render(request, 'study_subject.html', {"subject": display, "resources": resources, "slugify": slugify})
+
+
+def _get_all_services() -> list[dict]:
+    """Fetch + parse + cache the full list."""
+    cached = cache.get(CACHE_KEY)
+    if cached is not None:
+        return cached
+
+    html = fetch_html(DEFAULT_URL)
+    pairs = parse_services(html, DEFAULT_URL)  # [(name, url), ...]
+    items = [{"name": n, "url": u} for n, u in pairs]
+
+    cache.set(CACHE_KEY, items, CACHE_TTL_SECONDS)
+    return items
+
+def programs_list(request: HttpRequest) -> HttpResponse:
+    page = request.GET.get("page", "1")
+    page_size = request.GET.get("page_size", "20")
+
+    try:
+        page_size_int = max(1, min(100, int(page_size)))
+    except ValueError:
+        page_size_int = 20
+
+    items = _get_all_services()
+
+    paginator = Paginator(items, page_size_int)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    context = {
+        "items": page_obj.object_list,
+        "page_obj": page_obj,
+        "paginator": paginator,
+        "total_items": paginator.count,
+        "page_size": page_size_int,
+        "title": "All SDSU Programs",
+    }
+    return render(request, "programs_list.html", context)

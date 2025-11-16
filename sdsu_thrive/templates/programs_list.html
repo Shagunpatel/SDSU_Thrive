@@ -1,0 +1,70 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{% static 'cute.css' %}"/>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body class="bg">
+  <div class="card">
+    <header class="programs-header">
+  <lottie-player
+  src="https://assets8.lottiefiles.com/packages/lf20_lk80fpsm.json"
+  background="transparent" speed="1"
+  style="width:80px; height:80px;"
+  loop autoplay>
+</lottie-player>
+
+      <div>
+        <h1 style="margin:0;">📚 {{ title }}</h1>
+        <p class="subtitle" style="margin:.25rem 0 0;">
+          Found <span class="pill neutral">{{ total_items }}</span> programs
+        </p>
+      </div>
+    </header>
+
+    <!-- Pretty list -->
+    <ul class="list pretty-links">
+      {% for item in items %}
+        <li>
+          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="link-row">
+            <span>🔗 {{ item.name }}</span>
+            <span class="arrow">↗</span>
+          </a>
+        </li>
+      {% empty %}
+        <li class="muted">No programs available right now.</li>
+      {% endfor %}
+    </ul>
+
+    <!-- Pretty pagination -->
+    {% if paginator.num_pages > 1 %}
+      <nav class="pagination" aria-label="Pagination">
+        {% if page_obj.has_previous %}
+          <a class="btn" href="?page=1&page_size={{ page_size }}">« First</a>
+          <a class="btn" href="?page={{ page_obj.previous_page_number }}&page_size={{ page_size }}">‹ Prev</a>
+        {% else %}
+          <span class="btn disabled">« First</span>
+          <span class="btn disabled">‹ Prev</span>
+        {% endif %}
+
+        <span class="pill neutral page-indicator">Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+          <a class="btn" href="?page={{ page_obj.next_page_number }}&page_size={{ page_size }}">Next ›</a>
+          <a class="btn" href="?page={{ paginator.num_pages }}&page_size={{ page_size }}">Last »</a>
+        {% else %}
+          <span class="btn disabled">Next ›</span>
+          <span class="btn disabled">Last »</span>
+        {% endif %}
+      </nav>
+    {% endif %}
+
+    <div class="row" style="gap:10px; margin-top:1.25rem; justify-content:center;">
+      <a class="btn ghost" href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>
