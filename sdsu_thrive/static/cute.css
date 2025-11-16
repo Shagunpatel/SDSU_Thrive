@@ -20,13 +20,11 @@ body.bg {
   display: grid;
   place-items: center;
   padding: 40px;
-
-  background: url('/static/images/bunny-background.jpg') 
-              no-repeat 
-              center center;
+  background: url('/static/images/bunny-background.jpg') no-repeat center center;
   background-size: contain;
-
 }
+
+
 .bg {
   background-repeat: no-repeat;
   background-position: center;
