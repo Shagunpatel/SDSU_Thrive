@@ -129,36 +129,36 @@ QUIZ_QUESTIONS = [
         "id": "sleep",
         "text": "How has your sleep felt this week?",
         "choices": [
-            ("Great, restful 😴✨", 0),
-            ("Okay, but inconsistent 😐", 1),
-            ("Not great, hard to fall/stay asleep 😵‍💫", 2),
+            ("Great, restful", 0),
+            ("Okay, but inconsistent", 1),
+            ("Not great, hard to fall/stay asleep", 2),
         ],
     },
     {
         "id": "overwhelm",
         "text": "When deadlines stack up, you feel…",
         "choices": [
-            ("Focused, I have a plan ✅", 0),
-            ("A bit tense but managing 😬", 1),
-            ("Overwhelmed and stuck 🫠", 2),
+            ("Focused, I have a plan", 0),
+            ("A bit tense but managing", 1),
+            ("Overwhelmed and stuck", 2),
         ],
     },
     {
         "id": "energy",
         "text": "Your daytime energy levels are…",
         "choices": [
-            ("High! I’m cruising 🚀", 0),
-            ("Up and down ⛅", 1),
-            ("Low and foggy 🌫️", 2),
+            ("High! I'm cruising", 0),
+            ("Up and down", 1),
+            ("Low and foggy", 2),
         ],
     },
     {
         "id": "support",
         "text": "How supported do you feel by friends/family/campus?",
         "choices": [
-            ("Very supported 💗", 0),
-            ("Somewhat supported 🤝", 1),
-            ("Not really supported 🙈", 2),
+            ("Very supported", 0),
+            ("Somewhat supported", 1),
+            ("Not really supported", 2),
         ],
     },
 ]
