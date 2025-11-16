@@ -1,0 +1,110 @@
+body.bg {
+  background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWs3dHFwNnhwZ2k5bWthdzVqZDNxeWp1YW9uZHMwczVjNml2Z3dqeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DVhcQOgU74AhpV0atE/giphy.gif');
+  background-size: 140%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Inter", "Noto Sans", sans-serif;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: background 0.5s ease;
+}
+
+
+
+.card {
+  background: #ffffffd8;
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 36px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+  color: #305f72;
+}
+.subtitle {
+  color: #607d8b;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+
+.q {
+  background: #f8fbfb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  text-align: left;
+  transition: background 0.3s;
+}
+
+
+.q:hover {
+  background: #f1f9f8;
+}
+
+
+.choice {
+  display: block;
+  margin: 6px 0;
+  color: #444;
+  cursor: pointer;
+}
+
+
+input[type="radio"] {
+  accent-color: #5dbb9e;
+  margin-right: 6px;
+}
+
+
+button {
+  background: #5dbb9e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+
+button:hover {
+  background: #4fa88e;
+}
+
+
+button:active {
+  transform: scale(0.98);
+}
+
+
+a.ghost {
+  color: #5dbb9e;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+
+a.ghost:hover {
+  text-decoration: underline;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

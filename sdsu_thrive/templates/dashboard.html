@@ -7,54 +7,115 @@
   <link rel="stylesheet" href="/static/cute.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
-  /* Add vertical spacing between buttons */
-  .btn {
-    display: inline-block; /* ensures margin works correctly */
-    margin-bottom: 12px;   /* space below each button */
-  }
+    :root {
+      --accent: #e11d48;
+      --ink: #0f172a;
+      --sub: #6b7280;
+      --glass: rgba(255,255,255,.65);
+      --glass-strong: rgba(255,255,255,.85);
+      --chip: #fff7fb;
+      --chip-border: #ffe2f0;
+      --shadow: 0 20px 60px rgba(0,0,0,.18);
+      --radius: 28px;
+    }
 
-  /* Optional: slightly smaller size for all buttons */
-  .btn {
-    padding: 6px 14px;
-    font-size: 0.9rem;
-  }
-</style>
+    /* Base */
+    *,*:before,*:after{box-sizing:border-box}
+    html,body{height:100%}
+    body.bg{
+      margin:0; display:grid; place-items:center;
+      padding: clamp(16px, 3vw, 40px);
+      background: url('https://cdnb.artstation.com/p/assets/images/images/037/263/051/original/karina-formanova-rainforest-animation.gif?1619929364') no-repeat center / cover fixed;
+    }
+    /* subtle overlay for readability */
+    body.bg::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.1) 30%,rgba(0,0,0,.45))}
 
+    /* Card: more contrast & glass */
+    .card{
+      width:min(980px,100%);
+      background: var(--glass);
+      backdrop-filter: blur(12px) saturate(120%);
+      -webkit-backdrop-filter: blur(12px) saturate(120%);
+      border:1px solid rgba(255,255,255,.6);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(20px,3.6vw,48px);
+      text-align:center;
+    }
 
+    /* Header */
+    h1{margin:0 0 6px;font-size:clamp(1.8rem,1.1rem + 2.2vw,2.6rem);color:var(--ink)}
+    .subtitle{margin:0 0 18px;color:var(--sub)}
+
+    /* Tabs redesigned as segmented control */
+    .tabs{display:flex;gap:8px;justify-content:center;margin:18px 0 10px}
+    .tab{border:0;border-radius:999px;padding:10px 16px;cursor:pointer;font-weight:800;background:#fff;color:#111;box-shadow:0 6px 16px rgba(0,0,0,.07);transition:transform .12s ease}
+    .tab:hover{transform:translateY(-1px)}
+    .tab.active{background:#ffeef4}
+
+    .panel.hidden{display:none}
+
+    /* QUIZ TAB ONLY layout */
+    #quizTab .row{display:grid;grid-template-columns:160px 1fr;gap:22px;align-items:center;justify-items:center}
+    #quizTab img{width:160px;height:160px;object-fit:cover;border-radius:20px;background:#fff;border:1px solid #eee;box-shadow:0 10px 18px rgba(0,0,0,.06)}
+
+    #quizTab h3{margin:0 0 6px;color:var(--ink)}
+    #quizTab .pill{display:inline-flex;align-items:center;gap:8px;background:var(--chip);border:1px solid var(--chip-border);padding:8px 12px;border-radius:999px;font-weight:700;color:#9d174d}
+    #quizTab .pill .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:0;border-radius:14px;padding:12px 18px;font-weight:800;text-decoration:none;background:var(--accent);color:#fff;box-shadow:0 10px 20px rgba(225,29,72,.28);transition:transform .12s ease,filter .2s ease}
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+
+    /* Keep study tab looking how you had it (only minor neutral container tweaks) */
+    #studyTab .subject-list{list-style:none;padding-left:0;margin-top:16px;display:flex;flex-direction:column;gap:12px}
+    #studyTab .link-row{display:flex;justify-content:space-between;align-items:center;background:#fff7fb;border:1px solid #ffe2f0;border-radius:16px;padding:12px 16px;text-decoration:none;color:#222;font-weight:600;transition:transform .15s ease, box-shadow .15s ease}
+    #studyTab .link-row:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+
+    /* Logout button smaller & quiet */
+    .logout-btn{margin-top:18px;background:#fff;color:#111;border:1px solid rgba(0,0,0,.08)}
+
+    /* Mobile */
+    @media (max-width:640px){
+      #quizTab .row{grid-template-columns:1fr;gap:14px}
+      #quizTab img{width:130px;height:130px}
+    }
+  </style>
 </head>
-<body class="bg" style="background: url('https://cdnb.artstation.com/p/assets/images/images/037/263/051/original/karina-formanova-rainforest-animation.gif?1619929364') no-repeat center center; background-size: cover;">
-
+<body class="bg">
   <div class="card">
     <h1>Hi, {{ full_name }}!</h1>
     <p class="subtitle">Let’s check in and see how you are doing!</p>
 
-    <div class="tabs">
-      <button class="tab active" onclick="showTab('quizTab', this)">Stress Check Quiz</button>
-      <button class="tab" onclick="showTab('studyTab', this)">Need Help Studying?</button>
+    <div class="tabs" role="tablist">
+      <button class="tab active" onclick="showTab('quizTab', this)" role="tab" aria-controls="quizTab" aria-selected="true">Stress Check Quiz</button>
+      <button class="tab" onclick="showTab('studyTab', this)" role="tab" aria-controls="studyTab" aria-selected="false">Need Help Studying?</button>
     </div>
 
-    <!-- QUIZ TAB -->
-    <div id="quizTab" class="panel">
+    <!-- QUIZ TAB (improved visuals) -->
+    <div id="quizTab" class="panel" role="tabpanel" aria-labelledby="quizTabLabel">
       <div class="row">
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-uIlVjwrkNKn5p94cttudk_qsWYdg5aGJA&s" class="faded-image">
+        <img alt="Relaxed bunny at a computer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-uIlVjwrkNKn5p94cttudk_qsWYdg5aGJA&s" />
         <div>
-          <h3>Gentle check-in</h3>
+          <h3 id="quizTabLabel">Gentle check‑in</h3>
           {% if quiz %}
-            <div class="pill {{ quiz.color }}">
+            <div class="pill" title="Your last result">
+              <span class="dot" aria-hidden="true"></span>
               Last result: {{ quiz.level }} (score {{ quiz.score }})
             </div>
           {% endif %}
-          <a class="btn quiz-btn" href="{% url 'quiz' %}">Take Quiz</a>
+          <div style="margin-top:12px">
+            <a class="btn" href="{% url 'quiz' %}">Take Quiz</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- STUDY TAB -->
-    <div id="studyTab" class="panel hidden">
+    <!-- STUDY TAB (left intentionally unchanged functionally/visually) -->
+    <div id="studyTab" class="panel hidden" role="tabpanel" aria-labelledby="studyTabLabel">
       <div class="row">
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-uIlVjwrkNKn5p94cttudk_qsWYdg5aGJA&s" class="faded-image">
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-uIlVjwrkNKn5p94cttudk_qsWYdg5aGJA&s" class="faded-image" alt="Study icon" style="width:140px;height:140px;border-radius:20px;object-fit:cover;" />
         <div>
-          <h3>Study with less stress</h3>
+          <h3 id="studyTabLabel">Study with less stress</h3>
           <p>Import your classes or add them manually. Click a subject to see mentors & links!</p>
 
           <form method="post" action="{% url 'study_add' %}" class="inline-form">
@@ -70,25 +131,21 @@
           </form>
 
           {% if subjects %}
-  <ul class="subject-list">
-          {% for s in subjects %}
-            <li>
-              <a href="{% url 'study_subject' subject=s|slugify %}" class="link-row">
-                {{ s }}
-                <span class="arrow">→</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p class="muted">No subjects yet — try importing or adding one ✨</p>
-      {% endif %}
+            <ul class="subject-list">
+              {% for s in subjects %}
+                <li>
+                  <a href="{% url 'study_subject' subject=s|slugify %}" class="link-row">
+                    {{ s }}
+                    <span class="arrow">→</span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="muted">No subjects yet — try importing or adding one ✨</p>
+          {% endif %}
 
-
-          <a class="btn" href="{% url 'study_home' %}" >
-  Open Study Hub
-</a>
-
+          <a class="btn" href="{% url 'study_home' %}">Open Study Hub</a>
         </div>
       </div>
     </div>
@@ -100,10 +157,10 @@
     function showTab(id, btn) {
       document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
       document.getElementById(id).classList.remove('hidden');
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => {t.classList.remove('active'); t.setAttribute('aria-selected','false')});
       btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
     }
   </script>
-
 </body>
 </html>

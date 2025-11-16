@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ subject }} • Resources</title>
-  <link rel="stylesheet" href="/static/cute.css" />
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>{{ subject }} • Resources</title>
+ <link rel="stylesheet" href="/static/cute.css" />
 </head>
 <body class="bg" style=" background: url('https://i.redd.it/93yotva18hec1.gif')">
-  <div class="card">
-    <h1>📘 {{ subject }}</h1>
-    <p class="subtitle">Mentors & helpful links to study with less stress.</p>
+ <div class="card">
+   <h1>📘 {{ subject }}</h1>
+   <p class="subtitle">Mentors & helpful links to study with less stress.</p>
 
-    <h3>🤝 Mentors</h3>
-    <ul class="list">
-      {% if resources.mentors %}
-        {% for m in resources.mentors %}
-          <li>🧑‍🏫 {{ m }}</li>
-        {% endfor %}
-      {% else %}
-        <!-- Demo mentors -->
-        <li>🧑‍🏫 Alex Johnson</li>
-        <li>🧑‍🏫 Priya Patel</li>
-        <li>🧑‍🏫 Marcus Lee</li>
-        <li>🧑‍🏫 Sofia Rodriguez</li>
-      {% endif %}
-    </ul>
 
-    <h3>🔗 Helpful links</h3>
-    <ul class="list">
-      {% if resources.links %}
-        {% for label, url in resources.links %}
-          <li>🔎 <a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a></li>
-        {% endfor %}
-      {% else %}
-        <!-- Demo links -->
-        <li>🔎 <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a></li>
-        <li>🔎 <a href="https://www.coursera.org" target="_blank">Coursera</a></li>
-        <li>🔎 <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtOfse2ncvffeelTrqv9c6r8" target="_blank">CrashCourse</a></li>
-      {% endif %}
-    </ul>
+   <h3>🤝 Mentors</h3>
+   <ul class="list">
+     {% if resources.mentors %}
+       {% for m in resources.mentors %}
+         <li>🧑‍🏫 {{ m }}</li>
+       {% endfor %}
+     {% else %}
+       <!-- Demo mentors -->
+       <li>🧑‍🏫 Alex Johnson</li>
+       <li>🧑‍🏫 Priya Patel</li>
+       <li>🧑‍🏫 Marcus Lee</li>
+       <li>🧑‍🏫 Sofia Rodriguez</li>
+     {% endif %}
+</ul>
 
-    <a class="ghost" href="{% url 'study_home' %}">Back to Study Hub</a>
-  </div>
+
+   <h3>🔗 Helpful links</h3>
+   <ul class="list">
+ {% if resources.links %}
+   {% for label, url in resources.links %}
+     <li>
+       <a href="{{ url }}" target="_blank" rel="noopener">
+         {{ label }}
+         <span class="arrow">→</span>
+       </a>
+     </li>
+   {% endfor %}
+ {% else %}
+   <li><a href="https://www.khanacademy.org" target="_blank">Khan Academy <span class="arrow">→</span></a></li>
+   <li><a href="https://www.coursera.org" target="_blank">Coursera <span class="arrow">→</span></a></li>
+   <li><a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtOfse2ncvffeelTrqv9c6r8" target="_blank">CrashCourse <span class="arrow">→</span></a></li>
+ {% endif %}
+</ul>
+
+
+
+
+   <a class="ghost" href="{% url 'study_home' %}">Back to Study Hub</a>
+ </div>
 </body>
 </html>

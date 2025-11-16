@@ -4,17 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stress Check Quiz • SDSU Thrive</title>
-  <link rel="stylesheet" href="/static/cute.css" />
+  <link rel="stylesheet" href="/static/calm.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body class="bg">
   <div class="card">
     <h1>Gentle Stress Check</h1>
-    <p class="subtitle">Answer a few quick questions — no pressure.</p>
-    <img>
+    <p class="subtitle">Take a slow breath — answer at your own pace.</p>
 
 
-    <form method="post" style="margin-top:12px;">
+    <lottie-player
+      src="https://assets2.lottiefiles.com/private_files/lf30_m6j5igxb.json"
+      background="transparent"
+      speed="0.8"
+      style="width: 260px; height: 260px; margin: 0 auto;"
+      loop
+      autoplay
+    ></lottie-player>
+
+
+    <form method="post" style="margin-top: 16px;">
       {% csrf_token %}
       {% for q in questions %}
         <div class="q">
@@ -29,7 +38,8 @@
       <button type="submit">See Insights ✨</button>
     </form>
 
-    <a class="ghost" href="{% url 'dashboard' %}" style="margin-top:10px; display:inline-block;">Back to Dashboard</a>
+
+    <a class="ghost" href="{% url 'dashboard' %}" style="margin-top:12px; display:inline-block;">← Back to Dashboard</a>
   </div>
 </body>
 </html>
