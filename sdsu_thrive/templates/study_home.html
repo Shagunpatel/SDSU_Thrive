@@ -32,14 +32,20 @@
     {% endif %}
 
     {% if subjects %}
-      <ul class="subject-list">
-        {% for s in subjects %}
-          <li><a href="{% url 'study_subject' subject=s|slugify %}">{{ s }}</a></li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="muted">No subjects yet, try importing or adding one!</p>
-    {% endif %}
+  <ul class="subject-list">
+    {% for s in subjects %}
+      <li>
+        <a href="{% url 'study_subject' subject=s|slugify %}" class="link-row">
+          {{ s }}
+          <span class="arrow">→</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="muted">No subjects yet — try importing or adding one!</p>
+{% endif %}
+
 
     <a class="ghost" href="{% url 'dashboard' %}">Back to Dashboard</a>
   </div>

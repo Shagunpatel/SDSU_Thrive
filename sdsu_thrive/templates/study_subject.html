@@ -13,20 +13,31 @@
 
     <h3>🤝 Mentors</h3>
     <ul class="list">
-      {% for m in resources.mentors %}
-        <li>🧑‍🏫 {{ m }}</li>
-      {% empty %}
-        <li>Mentors will appear here.</li>
-      {% endfor %}
+      {% if resources.mentors %}
+        {% for m in resources.mentors %}
+          <li>🧑‍🏫 {{ m }}</li>
+        {% endfor %}
+      {% else %}
+        <!-- Demo mentors -->
+        <li>🧑‍🏫 Alex Johnson</li>
+        <li>🧑‍🏫 Priya Patel</li>
+        <li>🧑‍🏫 Marcus Lee</li>
+        <li>🧑‍🏫 Sofia Rodriguez</li>
+      {% endif %}
     </ul>
 
     <h3>🔗 Helpful links</h3>
     <ul class="list">
-      {% for label, url in resources.links %}
-        <li>🔎 <a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a></li>
-      {% empty %}
-        <li>Add links as you find them.</li>
-      {% endfor %}
+      {% if resources.links %}
+        {% for label, url in resources.links %}
+          <li>🔎 <a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a></li>
+        {% endfor %}
+      {% else %}
+        <!-- Demo links -->
+        <li>🔎 <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a></li>
+        <li>🔎 <a href="https://www.coursera.org" target="_blank">Coursera</a></li>
+        <li>🔎 <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtOfse2ncvffeelTrqv9c6r8" target="_blank">CrashCourse</a></li>
+      {% endif %}
     </ul>
 
     <a class="ghost" href="{% url 'study_home' %}">Back to Study Hub</a>
