@@ -27,6 +27,15 @@ body.bg {
   background-size: contain;
 
 }
+.bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
 
 
 
@@ -325,6 +334,7 @@ button[type="submit"]:hover {
   box-shadow: var(--shadow);
   cursor: pointer;
   display: inline-block;
+
 }
 .btn:hover { filter: brightness(1.03); transform: translateY(-1px); }
 .btn.disabled {
@@ -352,3 +362,7 @@ button[type="submit"]:hover {
   border-radius: 20px;
 }
 
+.btn.quiz-btn {
+  padding: 2px 8px;   /* smaller size */
+  font-size: 0.6rem;  /* smaller text */
+}

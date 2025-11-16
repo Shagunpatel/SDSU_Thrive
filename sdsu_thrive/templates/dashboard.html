@@ -6,6 +6,21 @@
   <title>Dashboard • SDSU Thrive</title>
   <link rel="stylesheet" href="/static/cute.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+  /* Add vertical spacing between buttons */
+  .btn {
+    display: inline-block; /* ensures margin works correctly */
+    margin-bottom: 12px;   /* space below each button */
+  }
+
+  /* Optional: slightly smaller size for all buttons */
+  .btn {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+  }
+</style>
+
+
 </head>
 <body class="bg" style="background: url('https://cdnb.artstation.com/p/assets/images/images/037/263/051/original/karina-formanova-rainforest-animation.gif?1619929364') no-repeat center center; background-size: cover;">
 
@@ -29,7 +44,7 @@
               Last result: {{ quiz.level }} (score {{ quiz.score }})
             </div>
           {% endif %}
-          <a class="btn" href="{% url 'quiz' %}">Take Quiz</a>
+          <a class="btn quiz-btn" href="{% url 'quiz' %}">Take Quiz</a>
         </div>
       </div>
     </div>

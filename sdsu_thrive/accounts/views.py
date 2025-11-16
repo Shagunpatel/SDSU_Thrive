@@ -235,28 +235,28 @@ def quiz_result(request):
 # Demo mentors & links per subject (hard-coded)
 SUBJECT_RESOURCES = {
     "Calculus I": {
-        "mentors": ["Jordan A. (Calc/Physics)", "Sam K. (STEM Center)", "Priya R. (Peer Tutor)"],
+        "mentors": ["Jordan A. (Calc/Physics) 12:00-2:00PM", "Sam K. (STEM Center)", "Priya R. (Peer Tutor)"],
         "links": [
             ("Paul’s Online Math Notes (Derivatives)", "https://tutorial.math.lamar.edu/"),
             ("Khan Academy: Calculus I", "https://www.khanacademy.org/math/calculus-1")
         ],
     },
     "Intro to Psychology": {
-        "mentors": ["Alexis M. (Psych TA)", "Wellness Peer Educators"],
+        "mentors": ["Alexis M. (Psych TA) 3:00-5:00PM", "Wellness Peer Educators"],
         "links": [
             ("SimplyPsych: Memory basics", "https://www.simplypsychology.org/memory.html"),
             ("CrashCourse Psychology", "https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6")
         ],
     },
     "CS 150 – Intro to Programming": {
-        "mentors": ["Diego F. (CS Tutor)", "Coding Lab Hours"],
+        "mentors": ["Diego F. (CS Tutor) 10:00-11:30AM", "Coding Lab Hours"],
         "links": [
             ("W3Schools Python", "https://www.w3schools.com/python/"),
             ("LeetCode (Easy Warmups)", "https://leetcode.com/problemset/?difficulty=EASY")
         ],
     },
      "CS577-09:Principles and Techniques of Data Science": {
-        "mentors": ["Maya T. (Data Science TA)", "Ethan L. (Machine Learning Mentor)"],
+        "mentors": ["Maya T. (Data Science TA) 4:00-5:00PM Tue/Thu", "Ethan L. (Data Science Mentor) 12:30-2:00PM Mon/Wed/Fri"],
         "links": [
             ("Kaggle: Intro to Machine Learning", "https://www.kaggle.com/learn/intro-to-machine-learning"),
             ("Pandas Documentation", "https://pandas.pydata.org/docs/"),
