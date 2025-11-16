@@ -1,1 +1,1 @@
-# SDSU-Thrive-
+# SDSU-Thrive
